@@ -1,5 +1,6 @@
 package com.jomo.ems.employee.service;
 
+import com.jomo.ems.employee.dto.query.EmployeeCollectionQuery;
 import com.jomo.ems.employee.model.Employee;
 import com.jomo.ems.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,24 +14,36 @@ import java.util.UUID;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
-    public Employee addEmployee(Employee employee) {
+    public Employee add(Employee employee) {
         System.out.println(employee);
         return employeeRepository.save(employee.setId(UUID.randomUUID()));
     }
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public List<Employee> readCollection(EmployeeCollectionQuery collectionQuery) {
+        return employeeRepository.findByCollectionQuery(collectionQuery);
     }
 
     public Employee getById(UUID id) {
-        return employeeRepository.findById(id).orElse(null);
+        // todo Throw error
+        // todo handling error EMSException(ErrorCode.NOT_FOUND, "Employee not found for:%s", id.toString())
+        // common
+        return employeeRepository.findById(id)
+                .orElseThrow(RuntimeException::new);
+        // try get method
     }
 
-    public Employee editEmployee(Employee updatedEmployee) {
+    // todo update
+    public Employee edit(Employee updatedEmployee) {
+        // todo validations
+
+        // try get
         return employeeRepository.save(updatedEmployee);
     }
 
-    public void deleteEmployee(UUID id){
+    // todo delete
+    public void delete(UUID id){
+        // todo validations
+        // todo try get
         employeeRepository.deleteById(id);
     }
 }

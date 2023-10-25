@@ -15,8 +15,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JobPosition {
+
+    // TODO JobPosition module move to new package
+    // TODO develop CRUD for JobPosition
+    // TODO only some sort of admin can create/update/delete JobPosition
+    // TODO same as for department
     @Id
     UUID id;
-    String positionTitle;
+    String positionTitle; // for example BE DEV,...
     String description;
 }

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ public class LeaveRequest
     UUID id;
     Integer employeeId;
     LeaveType leaveType;
-    Date startDate;
-    Date endDate;
-    Status status;
+    Instant startDate;
+    Instant endDate;
+    Status status; // todo Status status-> LeaveRequestStatus status
 }
